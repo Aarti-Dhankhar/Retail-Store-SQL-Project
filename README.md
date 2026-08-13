@@ -57,3 +57,10 @@ The objective of this project is to analyze customers, orders, products, sales, 
 - Analyzed customer ordering behavior.
 - Compared customer spending and order patterns.
 - Analyzed products that have never been ordered.
+  
+  ## How to Run
+- Create the database in MySQL
+- Run the database/table creation SQL script
+- Insert the provided data
+- Run the queries from "solutions.sql"
+- Review the query outputs for analysis
