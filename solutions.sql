@@ -23,13 +23,13 @@ SELECT name , price FROM products ORDER BY price DESC , name ASC;
 -- Level 2 : Filtering and Formatting
 -- Q1: Retrieve orders where customer information is missing (possibly due to data migration and deletion)
 SELECT * FROM orders WHERE customer_id IS NULL;
--- Q2: Display customer names and emails using column aliases for fronted readability
+-- Q2: Display customer names and emails using column aliases for frontend readability
 SELECT name AS Customer_name, email AS email_ADD FROM customers ;
 -- Q3: Calculate total value per item ordered by multiplying quantity and item price
 SELECT  quantity , item_price , quantity * item_price AS total_value FROM order_items;
 -- Q4: Combine customer name and phone number in a single column
 SELECT CONCAT(name, "-", phone) as cust_details FROM customers;
--- Q5: Extact only the date part from order timestamps for date-wise reporting
+-- Q5: Extract only the date part from order timestamps for date-wise reporting
 SELECT  DATE(order_date) AS order_date FROM orders;
 -- Q6: List products that do not have any stock left
 SELECT name FROM products WHERE stock_quantity = 0;
@@ -37,9 +37,10 @@ SELECT name FROM products WHERE stock_quantity = 0;
 -- Level 3 : Aggregations
 -- Q1: Count the toal number of orders placed
 SELECT count(*) AS total_orders FROM orders;
--- Q2: Calculate the toal revenue collected from all orders
+-- Q2: Calculate the total revenue collected from all orders
 SELECT sum(total_amount) AS total_revenue FROM orders;
 -- Q3: Calculate the average order value
+
 SELECT avg(total_amount) as avg_order_value FROM orders;
 -- Q4: Count the number of customers who have placed at least one order
 SELECT count(distinct customer_id) as customer_placed_order FROM orders;
@@ -59,7 +60,7 @@ SELECT p.category , avg(oi.item_price) as avg_price FROM products p join order_i
  SELECT method , sum(amount_paid) as total_paid FROM payments GROUP BY method;
  
  -- Level 4 : Multi-Table Queries (JOINS)
- -- Q1: Retreive order details along with customer name (INNER JOIN)
+ -- Q1: Retrieve order details along with customer name (INNER JOIN)
 SELECT c.name , o.order_id FROM customers c INNER JOIN orders o 
 ON c.customer_id = o.customer_id;
 -- Q2: Get list of products that have been sold (INNER JOIN with order_items)
@@ -96,7 +97,7 @@ SELECT name FROM customers WHERE customer_id in (SELECT customer_id FROM orders)
  WHERE o.total_amount = (SELECT max(o2.total_amount) FROM orders o2 WHERE o2.customer_id = o.customer_id);
  
  -- Level 6 : Set Operations
- -- Q1: List all customers who have eithe placed an order or written a product review 
+ -- Q1: List all customers who have either placed an order or written a product review 
  SELECT customer_id FROM orders UNION SELECT customer_id FROM product_reviews;
  -- Q2: List all customers who have placed an order as well as reviewed a product
  SELECT DISTINCT o.customer_id FROM orders o WHERE exists (SELECT 1 FROM product_reviews r WHERE r.customer_id =o.customer_id);
@@ -108,7 +109,7 @@ ON c.customer_id = o.customer_id GROUP BY o.customer_id , c.name ORDER BY total_
 -- Find the average order value for each customer (including names)
 SELECT c.name , c.customer_id , AVG(o.total_amount) as avg_spending FROM customers c JOIN orders o ON c.customer_id = o.customer_id 
 GROUP BY c.customer_id ORDER BY avg_spending DESC;
--- Find the category-wise total sales and sort categoies
+-- Find the category-wise total sales and sort categories
 --  from highest to lowest sales
 SELECT p.category , SUM(oi.quantity * oi.item_price) AS total_sales FROM products p JOIN order_items oi
  On p.product_id = oi.product_id GROUP BY p.category ORDER BY total_sales DESC;
