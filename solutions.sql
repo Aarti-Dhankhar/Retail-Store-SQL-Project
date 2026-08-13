@@ -1,7 +1,7 @@
--- Level 1 : Basics
+-- Level 1: Basics
 -- Q1: Retrieve customer names and emails for email marketing
 SELECT name , email from customers;
--- Q2: View complete product catalognwith all available details
+-- Q2: View complete product catalog with all available details
 SELECT * FROM products;
 -- Q3: List all unique product categories
 SELECT DISTINCT category FROM products;
@@ -9,7 +9,7 @@ SELECT DISTINCT category FROM products;
 SELECT name , price FROM products WHERE price > 1000;
 -- Q5: Display products within a mid-range price bracket (2000 to 5000)
 SELECT name , price FROM products WHERE price BETWEEN 2000 AND 5000;
--- Q6: Fetch data for specific customer IDs (e.g.,from loyalty program list)
+-- Q6: Fetch data for specific customer IDs (e.g., from loyalty program list)
 SELECT * FROM customers WHERE customer_id IN (1, 3 ,5 , 9 );
 -- Q7: Identify customers whose names start with the letter 'A' (Wildcard match)
 SELECT * FROM customers WHERE name LIKE "A%";
@@ -153,5 +153,5 @@ SELECT p.category , SUM(oi.quantity * oi.item_price) AS category_sales, ROUND(SU
 JOIN order_items oi ON p.product_id = oi.product_id GROUP BY p.category ORDER BY sales_percentage DESC;
 -- Customers who purchased products from more than one category
 SELECT o.customer_id , c.name , COUNT(DISTINCT p.category) AS category_count  FROM orders o 
-JOIN order_items oi ON o.order_id = oi.product_id JOIN products p ON oi.product_id = p.product_id JOIN customers c 
+JOIN order_items oi ON o.order_id = oi.order_id JOIN products p ON oi.product_id = p.product_id JOIN customers c 
 ON o.customer_id = c.customer_id GROUP BY o.customer_id , c.name HAVING COUNT(DISTINCT p.category) > 1;
