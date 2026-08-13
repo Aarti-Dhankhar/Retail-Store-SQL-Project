@@ -50,7 +50,7 @@ The objective of this project is to analyze customers, orders, products, sales, 
 - Ranking and analytical queries
 - Business-oriented SQL analysis
   
-- ## Key Insights
+  ## Key Insights
 - Identified top customers based on total spending.
 - Analyzed category-wise and product-wise sales performance.
 - Identified best-selling products.
