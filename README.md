@@ -49,3 +49,11 @@ The objective of this project is to analyze customers, orders, products, sales, 
 - Subquery-based analysis
 - Ranking and analytical queries
 - Business-oriented SQL analysis
+  
+- ## Key Insights
+- Identified top customers based on total spending.
+- Analyzed category-wise and product-wise sales performance.
+- Identified best-selling products.
+- Analyzed customer ordering behavior.
+- Compared customer spending and order patterns.
+- Analyzed products that have never been ordered.
