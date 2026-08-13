@@ -1,4 +1,5 @@
 CREATE DATABASE Retail_Store;
+USE Retail_Store;
 -- customers
 CREATE TABLE customers ( 
     customer_id INT PRIMARY KEY AUTO_INCREMENT, 
